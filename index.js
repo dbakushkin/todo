@@ -26,22 +26,26 @@ form.after(list);
 
 const createElement = () => {
     let item = document.createElement("li");
-    buttonGroup = document.createElement("div");
-    let doneButton = document.createElement("button");
-    let deleteButton = document.createElement("button");
     item.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center");
     item.textContent = input.value;
+
+    let buttonGroup = document.createElement("div");
+    let doneButton = document.createElement("button");
+    let deleteButton = document.createElement("button");
+
     buttonGroup.classList.add("btn-group", "btn-group-sm");
+    
     doneButton.classList.add("btn", "btn-success");
     doneButton.textContent = "Готово";
+
     deleteButton.classList.add("btn", "btn-danger");
     deleteButton.textContent = "Удалить";
-    buttonGroup.append(doneButton);
-    buttonGroup.append(deleteButton);
+
     buttonGroup.append(doneButton);
     buttonGroup.append(deleteButton);
     item.append(buttonGroup);
     list.append(item);
+
     input.value = "";
 }
 
@@ -58,7 +62,8 @@ button.addEventListener("click", (e) => {
 
 list.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn-success")) {
-        e.target.parentElement.parentElement.classList.toggle("list-group-item-success")
+        console.log(e.target.closest("li"))
+        e.target.closest("li").classList.toggle("list-group-item-success")
     }
 })
 
@@ -66,6 +71,6 @@ list.addEventListener("click", (e) => {
 list.addEventListener("click", (e) => {
     console.log(e)
     if (e.target.classList.contains("btn-danger")) {
-        e.target.parentElement.parentElement.remove()
+        e.target.closest("li").remove()
     }
 })
